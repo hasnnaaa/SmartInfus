@@ -11,8 +11,15 @@ class InfusionLog extends Model implements Monitorable
     use HasFactory;
     
     protected $guarded = [];
+    protected $appends = ['status_berat', 'color_berat', 'status_tetesan'];
+    
+    public function getStatusLabel() {
+        return $this->status_berat; 
+    }
 
-    protected $appends = ['status_berat', 'color_berat', 'status_tetesan']; 
+    public function getStatusColor() {
+        return $this->color_berat; 
+    }
 
     public function device() {
         return $this->belongsTo(Device::class, 'device_id', 'device_code');
@@ -34,11 +41,4 @@ class InfusionLog extends Model implements Monitorable
         return ($this->drop_rate > 0) ? 'MENETES' : 'TIDAK MENETES';
     }
 
-    public function getStatusLabel() {
-        return $this->status_berat; 
-    }
-
-    public function getStatusColor() {
-        return $this->color_berat; 
-    }
 }
