@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\Monitorable;
 
-class InfusionLog extends Model
+class InfusionLog extends Model implements Monitorable
 {
     use HasFactory;
     
@@ -31,5 +32,13 @@ class InfusionLog extends Model
 
     public function getStatusTetesanAttribute() {
         return ($this->drop_rate > 0) ? 'MENETES' : 'TIDAK MENETES';
+    }
+
+    public function getStatusLabel() {
+        return $this->status_berat; 
+    }
+
+    public function getStatusColor() {
+        return $this->color_berat; 
     }
 }

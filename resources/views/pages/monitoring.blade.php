@@ -37,8 +37,8 @@
                         <td>{{ $d->room_name }}</td>
                         <td>{{ $d->device_name }}</td>
                         <td>
-                            <span class="badge {{ $d->is_active ? 'bg-success' : 'bg-danger' }}">
-                                {{ $d->is_active ? 'AKTIF' : 'TIDAK AKTIF' }}
+                            <span class="badge bg-{{ $d->getStatusColor() }}">
+                                {{ $d->getStatusLabel() }}
                             </span>
                         </td>
                         
